@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import InputTask from './components/InputTask.js';
+import SwitchMode from './components/SwitchMode.js';
+import AllTasks from './components/AllTasks.js';
+import Footer from './components/Footer.js';
+import SyncButton from './components/SyncButton';
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <InputTask />
+      <SwitchMode />
+      <AllTasks />
+      <Footer />
+      <SyncButton />
     </div>
   );
 }
