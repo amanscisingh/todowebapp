@@ -33,7 +33,7 @@ Clone the repo or fork it
    --todos.js
 --routes
   --api.js
---todo_list_webapp
+--todo_list_webapp (the react code is in this folder)
   --public
     --favicon
     --index.css
