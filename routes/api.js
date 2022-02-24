@@ -2,6 +2,10 @@ const express = require('express');
 const apiRouter = express.Router();
 const Todo = require('../models/todos');
 
+apiRouter.get('/', (req, res) => {
+    res.send('Welcome to the TODO API');
+});
+
 apiRouter.get('/todos', async (req, res) => {
     try {
         const email = req.query.email;
