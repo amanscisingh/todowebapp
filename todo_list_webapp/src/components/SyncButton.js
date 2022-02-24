@@ -1,5 +1,5 @@
 import React from 'react'
-import Sync from '../images/sync.svg' 
+import Sync from '../images/reload.png' 
 import { useSelector, useDispatch } from 'react-redux';
 import { updateAllTodos } from '../actions/apiActions';
 

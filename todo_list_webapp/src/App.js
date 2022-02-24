@@ -13,18 +13,6 @@ function App() {
   const email = useSelector(state => state.email)
   dispatch(fetchAllTodos(email));
   const isLoggedIn = useSelector(state => state.isLoggedIn);
-  const apiError = useSelector(state => state.apiError);
-
-  if(apiError !== '') {
-    alert(apiError)
-    
-    dispatch(fetchAllTodos(email));
-
-    // dispatch({
-    //   type: 'CLEAR_API_ERROR',
-    // });
-    
-  }
 
   if (!isLoggedIn) {
     return (

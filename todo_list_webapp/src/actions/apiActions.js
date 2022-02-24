@@ -1,5 +1,5 @@
 import axios from "axios"
-const BASE_URL = 'http://localhost:8000/todos'
+const BASE_URL = 'https://todo-backend-amansingh.herokuapp.com/todos'
 
 export const fetchAllTodos = (email) => {
 
@@ -10,6 +10,7 @@ export const fetchAllTodos = (email) => {
             .then(response => {
                 console.log(response.data)
                 dispatch({type: 'FETCH_TODOS_SUCCESS', payload: response.data})
+                dispatch({type: 'CLEAR_API_ERROR'})
             })
             .catch(error => {
                 dispatch({type: 'FETCH_TODOS_ERROR', payload: error.message})
@@ -25,6 +26,7 @@ export const updateAllTodos = (email, body) => {
             .then(response => {
                 console.log(response.data)
                 dispatch({type: 'FETCH_TODOS_SUCCESS', payload: response.data})
+                dispatch({type: 'CLEAR_API_ERROR'})
             })
             .catch(error => {
                 dispatch({type: 'FETCH_TODOS_ERROR', payload: error.message})

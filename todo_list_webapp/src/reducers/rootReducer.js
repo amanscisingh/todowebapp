@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require('uuid');
+
 var email = localStorage.getItem('email');
 email = JSON.parse(email);
 const initState = {
@@ -42,7 +44,7 @@ const rootReducer = (state=initState, action) => {
                 allTasks: [
                     ...state.allTasks,
                     {
-                        id: state.allTasks.length + 1,
+                        id: uuidv4(),
                         title: state.taskInput,
                         isDone: false,
                     }
@@ -123,6 +125,7 @@ const rootReducer = (state=initState, action) => {
             }
 
         case 'FETCH_TODOS_ERROR':
+            alert(action.payload)
             return {
                 ...state,
                 apiError: action.payload,

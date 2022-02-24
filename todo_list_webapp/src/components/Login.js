@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Sync from '../images/reload.png'
 
 const Intro = () => {
     const dispatch = useDispatch()
@@ -20,6 +21,11 @@ const Intro = () => {
 
     return (
         <div className='App'>
+            <div className="information">
+                <img className='rotate' src={Sync} alt="" />
+                <h3>Don't Forget To Click Sync Button To Sync your todos with database</h3>
+            </div>
+
             <form className='form-group' onSubmit={handleSubmit}>
                 <div className='form-element'>
                     <label htmlFor='email'>Enter Email To Continue On TO Do Web App</label>
