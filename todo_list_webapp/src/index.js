@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers/rootReducer';
+import  thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(rootReducer);
+
+// const store = createStore(rootReducer);
+ const store = createStore(
+   rootReducer, 
+   composeWithDevTools(
+      applyMiddleware(thunkMiddleware)
+    )
+ );
+
 
 ReactDOM.render( 
   <Provider store={store}>

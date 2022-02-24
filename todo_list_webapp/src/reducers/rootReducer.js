@@ -1,9 +1,9 @@
-const  initState = {
+var email = localStorage.getItem('email');
+email = JSON.parse(email);
+const initState = {
     taskInput: '',
-    user: {
-        email: '',
-        name: '',
-    },
+    email:  email,
+    isLoggedIn: email === '' || email === null ? false : true,
     allTasks : [
         { id: 1, title: 'Task 1', isDone: false,  },
     ],
@@ -12,10 +12,25 @@ const  initState = {
     errorMessage: '',
     displayError: false,
     isSyncing: false,
+    apiError: '',
 }
 
 const rootReducer = (state=initState, action) => {
     switch(action.type) {
+        case 'CHANGE_EMAIL':    
+            return {
+                ...state,
+                email: action.payload
+            }
+        
+            case 'SUBMIT_EMAIL':
+                localStorage.setItem('email', JSON.stringify(state.email));
+                return {
+                    ...state,
+                    isLoggedIn: state.email !== '' ? true : false,
+                };
+
+
         case 'UPDATE_TASK_INPUT_VALUE':
             return {
                 ...state,
@@ -98,6 +113,27 @@ const rootReducer = (state=initState, action) => {
                 ...state,
                 isSyncing: !state.isSyncing,    
             }
+
+        case 'FETCH_TODOS_SUCCESS':
+            return {
+                ...state,
+                allTasks: action.payload.all,
+                completedTasks: action.payload.completed,
+                isSyncing: false,
+            }
+
+        case 'FETCH_TODOS_ERROR':
+            return {
+                ...state,
+                apiError: action.payload,
+                isSyncing: false,
+            }
+
+        case 'CLEAR_API_ERROR':
+            return {
+                ...state,
+                apiError: '',
+            }   
         
         default:
             return state;

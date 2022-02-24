@@ -1,11 +1,20 @@
 import React from 'react'
 import Sync from '../images/sync.svg' 
 import { useSelector, useDispatch } from 'react-redux';
+import { updateAllTodos } from '../actions/apiActions';
 
 const SyncButton = () => {
     const dispatch = useDispatch();
     const isSyncing = useSelector(state => state.isSyncing);
     const rotateOptions = isSyncing ? 'rotate' : '';
+    const email = useSelector(state => state.email)
+    const allTasks = useSelector(state => state.allTasks)
+    const completedTasks = useSelector(state => state.completedTasks)
+    const body = {
+        email,
+        all: allTasks,
+        completed: completedTasks,
+    }
 
     const syncBtnStyle = {
         position: 'fixed',
@@ -24,9 +33,7 @@ const SyncButton = () => {
     }
 
     const toggleSyncing = () => {
-        dispatch({
-            type: 'TOGGLE_SYNCING',
-        });
+        dispatch(updateAllTodos(email, body));
     }
 
   return (

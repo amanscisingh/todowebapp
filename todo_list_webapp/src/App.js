@@ -4,19 +4,43 @@ import SwitchMode from './components/SwitchMode.js';
 import AllTasks from './components/AllTasks.js';
 import Footer from './components/Footer.js';
 import SyncButton from './components/SyncButton';
-
-
+import Login from './components/Login.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllTodos } from './actions/apiActions';
 
 function App() {
-  return (
-    <div className="App">
-      <InputTask />
-      <SwitchMode />
-      <AllTasks />
-      <Footer />
-      <SyncButton />
-    </div>
-  );
+  const dispatch = useDispatch();
+  const email = useSelector(state => state.email)
+  dispatch(fetchAllTodos(email));
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  const apiError = useSelector(state => state.apiError);
+
+  if(apiError !== '') {
+    alert(apiError)
+    
+    dispatch(fetchAllTodos(email));
+
+    // dispatch({
+    //   type: 'CLEAR_API_ERROR',
+    // });
+    
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <Login />
+    )
+  } else {
+      return (
+        <div className="App">
+          <InputTask />
+          <SwitchMode />
+          <AllTasks />
+          <Footer />
+          <SyncButton />
+        </div>
+      );
+  }
 }
 
 export default App;
