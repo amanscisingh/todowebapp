@@ -3,7 +3,15 @@ const apiRouter = express.Router();
 const Todo = require('../models/todos');
 
 apiRouter.get('/', (req, res) => {
-    res.send('Welcome to the TODO API');
+    res.send(`
+        <h1>Welcome to the ToDo API</h1>
+        <br>
+        <h2>Available Routes:</h2>
+        <ul>
+            <li>GET /api/todos?email=youremail@xyz.com - To fetch data from database <a href='/todos?email=dummy@gmail.com'> click here </a> </li>
+            <li>POST /api/todos?email=youremail@xyz.com - To Sycn local data with the database </li>
+        </ul>
+    `);
 });
 
 apiRouter.get('/todos', async (req, res) => {
